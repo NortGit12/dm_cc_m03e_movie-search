@@ -15,7 +15,7 @@ class Movie {
     let title: String
     let rating: Double
     let summary: String
-    let posterImage: UIImage?
+    let posterImage: String
     
     private let kTitle = "title"
     private let kRating = "vote_average"
@@ -42,7 +42,7 @@ class Movie {
     
     // MARK: - Initializer(s)
     
-    init(title: String, rating: Double, summary: String, posterImage: UIImage? = nil) {
+    init(title: String, rating: Double, summary: String, posterImage: String) {
         
         self.title = title
         self.rating = rating
@@ -56,7 +56,7 @@ class Movie {
         guard let title = dictionary[kTitle] as? String
             , rating = dictionary[kRating] as? Double
             , summary = dictionary[kSummary] as? String
-            , posterImage = dictionary[kPosterImage] as? UIImage
+            , posterImage = dictionary[kPosterImage] as? String
         else { return nil }
         
         self.title = title
