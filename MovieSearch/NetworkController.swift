@@ -41,8 +41,11 @@ class NetworkController {
         let requestURL = urlFromParameters(url, urlParameters: urlParameters)
         
         let request = NSMutableURLRequest(URL: requestURL)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")      // new
         request.HTTPMethod = httpMethod.rawValue
         request.HTTPBody = body
+        
+//        print("request (absolute String) = \(request.URL?.absoluteString)")
         
         // Make the NSURLSession
         

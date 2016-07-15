@@ -12,21 +12,19 @@ class Movie {
     
     // MARK: - Stored Properties
     
-    let identifier: NSUUID
     let title: String
     let rating: Double
     let summary: String
     let posterImage: UIImage?
     
-    private let kIdentifier = "identifier"
     private let kTitle = "title"
-    private let kRating = "rating"
-    private let kSummary = "summary"
-    private let kPosterImage = "posterImage"
+    private let kRating = "vote_average"
+    private let kSummary = "overview"
+    private let kPosterImage = "poster_path"
     
     var descriptionString: String {
         
-        return "\(kIdentifier) = \(identifier), \(kTitle) = \(title), \(kRating) = \(rating), \(kSummary) = \(summary), \(kPosterImage) = \(posterImage)"
+        return "\(kTitle) = \(title), \(kRating) = \(rating), \(kSummary) = \(summary), \(kPosterImage) = \(posterImage)"
         
     }
     
@@ -46,7 +44,6 @@ class Movie {
     
     init(title: String, rating: Double, summary: String, posterImage: UIImage? = nil) {
         
-        self.identifier = NSUUID()
         self.title = title
         self.rating = rating
         self.summary = summary
@@ -56,14 +53,12 @@ class Movie {
     
     init?(identifier: String, dictionary: [String : AnyObject]) {
         
-        guard let identifier = NSUUID(UUIDString: identifier)
-            , title = dictionary[kTitle] as? String
+        guard let title = dictionary[kTitle] as? String
             , rating = dictionary[kRating] as? Double
             , summary = dictionary[kSummary] as? String
             , posterImage = dictionary[kPosterImage] as? UIImage
         else { return nil }
         
-        self.identifier = identifier
         self.title = title
         self.rating = rating
         self.summary = summary
