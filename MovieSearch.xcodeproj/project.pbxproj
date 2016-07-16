@@ -16,6 +16,7 @@
 		1F444C9B1D393C0700C5A2AA /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444C9A1D393C0700C5A2AA /* MovieController.swift */; };
 		1F444C9D1D3943B800C5A2AA /* SearchMoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444C9C1D3943B800C5A2AA /* SearchMoviesTableViewController.swift */; };
 		1F444CA01D39570300C5A2AA /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444C9F1D39570300C5A2AA /* MovieTableViewCell.swift */; };
+		1F444CA21D399A8700C5A2AA /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444CA11D399A8700C5A2AA /* ImageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1F444C9A1D393C0700C5A2AA /* MovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		1F444C9C1D3943B800C5A2AA /* SearchMoviesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMoviesTableViewController.swift; sourceTree = "<group>"; };
 		1F444C9F1D39570300C5A2AA /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		1F444CA11D399A8700C5A2AA /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				1F444C971D393BBA00C5A2AA /* NetworkController.swift */,
 				1F444C9A1D393C0700C5A2AA /* MovieController.swift */,
+				1F444CA11D399A8700C5A2AA /* ImageController.swift */,
 			);
 			name = ModelController;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F444CA21D399A8700C5A2AA /* ImageController.swift in Sources */,
 				1F444C9D1D3943B800C5A2AA /* SearchMoviesTableViewController.swift in Sources */,
 				1F444C9B1D393C0700C5A2AA /* MovieController.swift in Sources */,
 				1F444CA01D39570300C5A2AA /* MovieTableViewCell.swift in Sources */,

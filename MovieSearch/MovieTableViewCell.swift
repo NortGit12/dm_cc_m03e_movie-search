@@ -15,7 +15,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
     
 
     override func awakeFromNib() {
@@ -30,13 +30,7 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = movie.title
         ratingLabel.text = "\(movie.rating)"
         summaryLabel.text = movie.summary
-
-        let imageURL = NSURL(string: movie.posterImage)
-        let imageData = NSData(contentsOfURL:imageURL!)
-        if imageData != nil {
-            postImageView.image = UIImage(data:imageData!)
-        }
-        
+        posterImageView.image = movie.posterImage
     }
 
 }

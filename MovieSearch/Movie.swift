@@ -15,7 +15,7 @@ class Movie {
     let title: String
     let rating: Double
     let summary: String
-    let posterImage: String
+    var posterImage: UIImage
     
     private let kTitle = "title"
     private let kRating = "vote_average"
@@ -42,28 +42,27 @@ class Movie {
     
     // MARK: - Initializer(s)
     
-    init(title: String, rating: Double, summary: String, posterImage: String) {
-        
-        self.title = title
-        self.rating = rating
-        self.summary = summary
-        self.posterImage = posterImage
-        
-    }
-    
-    init?(identifier: String, dictionary: [String : AnyObject]) {
+    init?(dictionary: [String : AnyObject]) {
         
         guard let title = dictionary[kTitle] as? String
             , rating = dictionary[kRating] as? Double
             , summary = dictionary[kSummary] as? String
-            , posterImage = dictionary[kPosterImage] as? String
+            , posterImageURLFragment = dictionary[kPosterImage] as? String
         else { return nil }
         
         self.title = title
         self.rating = rating
         self.summary = summary
-        self.posterImage = posterImage
+        self.posterImage = UIImage()
         
+        ImageController.getImage(posterImageURLFragment) { (imageData) in
+            
+            if let imageData = imageData {
+                
+                self.posterImage = UIImage(data: imageData)!
+                
+            }
+        }
     }
     
 }

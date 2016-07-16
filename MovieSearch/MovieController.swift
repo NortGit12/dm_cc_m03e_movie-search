@@ -24,17 +24,7 @@ class MovieController {
     private let kSummary = "overview"
     private let kPosterImage = "poster_path"
     
-    weak var delegate: MovieDelegate?
-    
-    var movies: [Movie] {
-        
-        didSet {
-            
-            self.delegate?.moviesUpdated(movies)
-            
-        }
-        
-    }
+    var movies: [Movie] = []
     
     // MARK: - Initializer(s)
     
@@ -87,13 +77,7 @@ class MovieController {
             
             for movieDictionary in resultsArray {
                 
-                guard let title = movieDictionary[self.kTitle] as? String
-                    , rating = movieDictionary[self.kRating] as? Double
-                    , summary = movieDictionary[self.kSummary] as? String
-                    , posterImage = movieDictionary[self.kPosterImage] as? String
-                else { return }
-                
-                let movie = Movie(title: title, rating: rating, summary: summary, posterImage: posterImage)
+                guard let movie = Movie(dictionary: movieDictionary) else { break }
                 
                 moviesResultsArray.append(movie)
                 
@@ -115,11 +99,5 @@ class MovieController {
         }
         
     }
-    
-}
-
-protocol MovieDelegate: class {
-    
-    func moviesUpdated(movies: [Movie])
     
 }

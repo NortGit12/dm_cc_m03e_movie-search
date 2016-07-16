@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMoviesTableViewController: UITableViewController, MovieDelegate, UISearchBarDelegate {
+class SearchMoviesTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Stored Properties
     
@@ -23,23 +23,13 @@ class SearchMoviesTableViewController: UITableViewController, MovieDelegate, UIS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let movie = Movie(title: "Tremors", rating: 4.2, summary: "Blah", posterImage: "")
-        
-        self.movies.append(movie)
-        
-        movieController.delegate = self
         searchBar.delegate = self
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
         
-        super.viewWillAppear(animated)
-        
-        movieController.getMovies("Star Wars")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
     }
-
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,24 +54,21 @@ class SearchMoviesTableViewController: UITableViewController, MovieDelegate, UIS
         return cell
     }
     
-    // MARK: - MovieDelegate
-    
-    func moviesUpdated(movies: [Movie]) {
-        
-        self.movies = movies
-        
-    }
-    
     // MARK: - Action(s)
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         guard let searchText = searchBar.text where searchText.characters.count > 0 else { return }
         
-        movieController.getMovies(searchText)
-        
-        tableView.reloadData()
-        
+        movieController.getMovies(searchText) { (movies) in
+         
+            if let movies = movies {
+                
+                self.movies = movies
+                self.tableView.reloadData()
+                
+            }
+        }
     }
 
 }
