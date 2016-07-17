@@ -27,16 +27,6 @@ class Movie {
         return "\(kTitle) = \(title), \(kRating) = \(rating), \(kSummary) = \(summary), \(kPosterImage) = \(posterImage)"
     }
     
-    var dictionaryData: [String : AnyObject] {
-        
-        return [kTitle: title, kRating: rating, kSummary: summary, kPosterImage: posterImage]
-    }
-    
-    var jsonData: NSData? {
-        
-        return try? NSJSONSerialization.dataWithJSONObject(dictionaryData, options: .PrettyPrinted)
-    }
-    
     // MARK: - Initializer(s)
     
     init?(dictionary: [String : AnyObject]) {

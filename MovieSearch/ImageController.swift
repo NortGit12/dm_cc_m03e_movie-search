@@ -26,7 +26,7 @@ class ImageController {
         
         NetworkController.performRequestForURL(completeImageURL, httpMethod: .Get, urlParameters: urlParameters) { (data, error) in
             
-            let responseDataString = NSString(data: data!, encoding: NSUTF8StringEncoding) ?? ""
+//            let responseDataString = NSString(data: data!, encoding: NSUTF8StringEncoding) ?? ""
             
             guard let data = data else {
                 

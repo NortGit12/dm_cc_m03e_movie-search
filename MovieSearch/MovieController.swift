@@ -85,8 +85,6 @@ class MovieController {
                     
                     completion(movies: moviesResultsArray)
                 }
-                
-                return
             })
         }
     }
