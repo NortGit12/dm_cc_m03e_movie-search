@@ -35,7 +35,6 @@ class SearchMoviesTableViewController: UITableViewController, UISearchBarDelegat
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.movies.count
-        
     }
 
     
@@ -44,7 +43,6 @@ class SearchMoviesTableViewController: UITableViewController, UISearchBarDelegat
         guard let cell = tableView.dequeueReusableCellWithIdentifier("movieCell", forIndexPath: indexPath) as? MovieTableViewCell else {
             
             return UITableViewCell()
-            
         }
 
         let movie = self.movies[indexPath.row]
@@ -66,7 +64,6 @@ class SearchMoviesTableViewController: UITableViewController, UISearchBarDelegat
                 
                 self.movies = movies
                 self.tableView.reloadData()
-                
             }
         }
     }

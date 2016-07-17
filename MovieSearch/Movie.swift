@@ -15,7 +15,7 @@ class Movie {
     let title: String
     let rating: Double
     let summary: String
-    var posterImage: UIImage
+    var posterImage: String
     
     private let kTitle = "title"
     private let kRating = "vote_average"
@@ -25,19 +25,16 @@ class Movie {
     var descriptionString: String {
         
         return "\(kTitle) = \(title), \(kRating) = \(rating), \(kSummary) = \(summary), \(kPosterImage) = \(posterImage)"
-        
     }
     
     var dictionaryData: [String : AnyObject] {
         
-        return [kTitle: title, kRating: rating, kSummary: summary, kPosterImage: posterImage ?? ""]
-        
+        return [kTitle: title, kRating: rating, kSummary: summary, kPosterImage: posterImage]
     }
     
     var jsonData: NSData? {
         
         return try? NSJSONSerialization.dataWithJSONObject(dictionaryData, options: .PrettyPrinted)
-        
     }
     
     // MARK: - Initializer(s)
@@ -53,16 +50,7 @@ class Movie {
         self.title = title
         self.rating = rating
         self.summary = summary
-        self.posterImage = UIImage()
-        
-        ImageController.getImage(posterImageURLFragment) { (imageData) in
-            
-            if let imageData = imageData {
-                
-                self.posterImage = UIImage(data: imageData)!
-                
-            }
-        }
+        self.posterImage = posterImageURLFragment
     }
     
 }

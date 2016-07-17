@@ -31,7 +31,6 @@ class MovieController {
     init() {
     
         self.movies = []
-    
     }
     
     func getMovies(name: String, completion: ((movies: [Movie]?) -> Void)? = nil) {
@@ -64,23 +63,18 @@ class MovieController {
                 if let completion = completion {
                     
                     completion(movies: [])
-                    
                 }
                 
                 return
-            
             }
             
             var moviesResultsArray: [Movie] = []
-            
-            print("Movie details:")
             
             for movieDictionary in resultsArray {
                 
                 guard let movie = Movie(dictionary: movieDictionary) else { break }
                 
                 moviesResultsArray.append(movie)
-                
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -90,14 +84,11 @@ class MovieController {
                 if let completion = completion {
                     
                     completion(movies: moviesResultsArray)
-                    
                 }
                 
                 return
             })
-            
         }
-        
     }
     
 }

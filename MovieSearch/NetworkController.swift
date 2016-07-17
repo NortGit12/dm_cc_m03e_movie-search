@@ -45,8 +45,6 @@ class NetworkController {
         request.HTTPMethod = httpMethod.rawValue
         request.HTTPBody = body
         
-//        print("request (absolute String) = \(request.URL?.absoluteString)")
-        
         // Make the NSURLSession
         
         let session = NSURLSession.sharedSession()

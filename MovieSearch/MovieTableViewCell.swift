@@ -30,7 +30,12 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = movie.title
         ratingLabel.text = "\(movie.rating)"
         summaryLabel.text = movie.summary
-        posterImageView.image = movie.posterImage
+        
+        ImageController.getImage(movie.posterImage) { (image) in
+            
+            guard let image = image else { return }
+            self.posterImageView.image = image
+        }
     }
 
 }

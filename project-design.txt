@@ -1,0 +1,179 @@
+//=============================
+// Project Design
+//=============================
+
+
+		Project config
+			*info.plist: App Transport allow work
+
+
+		Model
+			*Movie
+				*Stored Properties
+					*identifier: NSUUID
+					*title: String
+					*rating: Double
+					*summary: String
+					*posterImage: UIImage?
+					*Computed:
+						*descriptionString
+						//*putEndpoint
+						*dictionaryData
+						*jsonData
+				*Initializer(s)
+					*Member-wise
+					*Failable - init?(identifier: NSUUID, dictionary: [String : AnyObject])
+
+
+ModelController
+	*NetworkController
+	*MovieController
+		*Stored Properties
+			*baseURL
+			*getterURL
+			*movies: [Movie] with the didSet observer
+		*Initializer(s)
+			*self.movies = []
+			*Populate self.movies with the getter
+		*Methods
+			*getMovies(name: String, completion: ((movies: [Movie]?) -> Void)? = nil)
+		*Protocol
+			*MovieDelegate
+				*func moviesUpdated(movies: [Movie])
+
+
+ViewController
+	*SearchMoviesTableViewController
+		*Stored Properties
+			*UISearch thingie
+			*TableView (should come with it)
+			*Custom tableview cell
+				*titleLabel
+				*ratingLabel
+				*summaryLabel
+				*posterImageView
+
+
+
+
+http://api.themoviedb.org/3/search/movie?api_key=39b3b8ccedabe0c9373ba3b32a814d13&query=Star%20Wars
+
+
+
+
+
+
+guard let resultsArray = dictionaryArray[self.kResultsArray] as? [AnyObject] else { ... }
+
+
+
+[
+	[
+		"genre_ids": <__NSCFArray 0x7fd6fcab58b0>(12,28,878)
+		, "overview": Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.
+		, "title": Star Wars
+		, "video": 0
+		, "release_date": 1977-03-20
+		, "original_language": en
+		, "popularity": 7.291164
+		, "poster_path": /tvSlBzAdRE29bZe5yYWrJ2ds137.jpg
+		, "original_title": Star Wars
+		, "id": 11
+		, "vote_count": 3832
+		, "adult": 0
+		, "backdrop_path": /4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg
+		, "vote_average": 7.82
+	]
+
+, ["genre_ids": <__NSCFArray 0x7fd6fcab5d60>(28,12,878,14)
+, "overview": Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers., "title": Star Wars: The Force Awakens, "video": 0, "release_date": 2015-12-15, "original_language": en, "popularity": 11.457627, "poster_path": /weUSwMdQIa3NaXVzwUoIIcAi85d.jpg, "original_title": Star Wars: The Force Awakens, "id": 140607, "vote_count": 4464, "adult": 0, "backdrop_path": /c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg, "vote_average": 7.56]
+
+, ["genre_ids": <__NSCFArray 0x7fd6fcab6210>(53,16,28,878,12,14)
+, "overview": Set between Episode II and III the Clone Wars is the first computer animated Star Wars film. Anakin and Obi Wan must find out who kidnapped Jabba the Hutts son and return him safely. The Seperatists will try anything to stop them and ruin any chance of a diplomatic agreement between the Hutt's and the Republic., "title": Star Wars: The Clone Wars, "video": 0, "release_date": 2008-08-05, "original_language": en, "popularity": 2.651143, "poster_path": /xd6yhmtS6mEURZLwUDT5raEMbf.jpg, "original_title": Star Wars: The Clone Wars, "id": 12180, "vote_count": 224, "adult": 0, "backdrop_path": /gmLMaDXi4lFWG8WitaCYOJS5GtL.jpg, "vote_average": 6.05], ["genre_ids": <__NSCFArray 0x7fd6fcab66a0>(
+28,
+12,
+14,
+878
+)
+, "overview": Rey took her first steps into a larger world in Star Wars: The Force Awakens and will continue her epic journey with Finn, Poe, and Luke Skywalker in the next chapter of the continuing Star Wars saga, Star Wars: Episode VIII., "title": Star Wars: Episode VIII, "video": 0, "release_date": 2017-12-13, "original_language": en, "popularity": 2.130932, "poster_path": /nlqFgG7jfBITl8fJHzL72jXwYLt.jpg, "original_title": Star Wars: Episode VIII, "id": 181808, "vote_count": 57, "adult": 0, "backdrop_path": /ujDIuOsny76xQ7LGe0SOqh9PiMg.jpg, "vote_average": 7.54], ["genre_ids": <__NSCFArray 0x7fd6fcab6a00>(
+28,
+12,
+14,
+878
+)
+, "overview": , "title": Star Wars: Episode IX, "video": 0, "release_date": 2019-05-23, "original_language": en, "popularity": 1.849809, "poster_path": /h8nOhMGqErN5IGeE1RYZTBKZu0n.jpg, "original_title": Star Wars: Episode IX, "id": 181812, "vote_count": 23, "adult": 0, "backdrop_path": /i0NGCiMxL4NIVk2hhjtVgnNYZ3a.jpg, "vote_average": 7.3], ["genre_ids": <__NSCFArray 0x7fd6fcab6e20>(
+12,
+28,
+878
+)
+, "overview": Anakin Skywalker, a young slave strong with the Force, is discovered on Tatooine. Meanwhile, the evil Sith have returned, enacting their plot for revenge against the Jedi., "title": Star Wars: Episode I - The Phantom Menace, "video": 0, "release_date": 1999-05-19, "original_language": en, "popularity": 3.286659, "poster_path": /n8V09dDc02KsSN6Q4hC2BX6hN8X.jpg, "original_title": Star Wars: Episode I - The Phantom Menace, "id": 1893, "vote_count": 2471, "adult": 0, "backdrop_path": /wdp4unWJWY9hGKN1tM56HeSt6PZ.jpg, "vote_average": 6.28], ["genre_ids": <__NSCFArray 0x7fd6fcab71b0>(
+12,
+28,
+878
+)
+, "overview": Ten years after the invasion of Naboo, the galaxy is on the brink of civil war. Under the leadership of a renegade Jedi named Count Dooku, thousands of solar systems threaten to break away from the Galactic Republic. When an assassination attempt is made on Senator Padmé Amidala, the former Queen of Naboo, twenty-year-old Jedi apprentice Anakin Skywalker is assigned to protect her. In the course of his mission, Anakin discovers his love for Padmé as well as his own darker side. Soon, Anakin, Padmé, and Obi-Wan Kenobi are drawn into the heart of the Separatist movement and the beginning of the Clone Wars., "title": Star Wars: Episode II - Attack of the Clones, "video": 0, "release_date": 2002-05-15, "original_language": en, "popularity": 3.004503, "poster_path": /2vcNFtrZXNwIcBgH5e2xXCmVR8t.jpg, "original_title": Star Wars: Episode II - Attack of the Clones, "id": 1894, "vote_count": 2222, "adult": 0, "backdrop_path": /560F7BPaxRy8BsOfVU6cW4ivM46.jpg, "vote_average": 6.35], ["genre_ids": <__NSCFArray 0x7fd6fcab77b0>(
+878,
+12,
+28
+)
+, "overview": Years after the onset of the Clone Wars, the noble Jedi Knights lead a massive clone army into a galaxy-wide battle against the Separatists. When the sinister Sith unveil a thousand-year-old plot to rule the galaxy, the Republic crumbles and from its ashes rises the evil Galactic Empire. Jedi hero Anakin Skywalker is seduced by the dark side of the Force to become the Emperor's new apprentice -- Darth Vader. The Jedi are decimated, as Obi-Wan Kenobi and Jedi Master Yoda are forced into hiding. The only hope for the galaxy are Anakin's own offspring -- the twin children born in secrecy who will grow up to become heroes., "title": Star Wars: Episode III - Revenge of the Sith, "video": 0, "release_date": 2005-05-17, "original_language": en, "popularity": 2.95026, "poster_path": /tgr5Pdy7ehZYBqBkN2K7Q02xgOb.jpg, "original_title": Star Wars: Episode III - Revenge of the Sith, "id": 1895, "vote_count": 2287, "adult": 0, "backdrop_path": /wUYTfFbfPiZC6Lcyt1nonr69ZmK.jpg, "vote_average": 6.95], ["genre_ids": <__NSCFArray 0x7fd6fcab7cb0>(
+12,
+28,
+878
+)
+, "overview": The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair., "title": The Empire Strikes Back, "video": 0, "release_date": 1980-01-01, "original_language": en, "popularity": 4.489286, "poster_path": /6u1fYtxG5eqjhtCPDx04pJphQRW.jpg, "original_title": The Empire Strikes Back, "id": 1891, "vote_count": 3444, "adult": 0, "backdrop_path": /AkE7LQs2hPMG5tpWYcum847Knre.jpg, "vote_average": 7.98], ["genre_ids": <__NSCFArray 0x7fd6fcab80d0>(
+99
+)
+, "overview": Alex Zane counts down the top 20 Star Wars moments as voted by the public. Includes contributions from famous fans as well as the stars and crew of the intergalactic saga., "title": Star Wars: Greatest Moments, "video": 0, "release_date": 2015-12-26, "original_language": en, "popularity": 1.201622, "poster_path": /65jlytLScOl2pEzm1ky6aagVreR.jpg, "original_title": Star Wars: Greatest Moments, "id": 378386, "vote_count": 2, "adult": 0, "backdrop_path": <null>, "vote_average": 5.25], ["genre_ids": <__NSCFArray 0x7fd6fcab8490>(
+12,
+35,
+10751,
+878,
+10770
+)
+, "overview": Luke Skywalker and Han Solo battle evil Imperial forces to help Chewbacca reach his imperiled family on the Wookiee planet - in time for Life Day, their most important day of the year!, "title": The Star Wars Holiday Special, "video": 0, "release_date": 1978-12-01, "original_language": en, "popularity": 1.519537, "poster_path": /3MsSWyFFWGNOneSfLv4Qtw8xThg.jpg, "original_title": The Star Wars Holiday Special, "id": 74849, "vote_count": 39, "adult": 0, "backdrop_path": /ie6u0zegHcVJEtHSpYn0KgEogrD.jpg, "vote_average": 3.19], ["genre_ids": <__NSCFArray 0x7fd6fcab8870>(
+28,
+16,
+35,
+10751,
+878
+)
+, "overview": Phineas and Ferb travel to a galaxy far far away to help out some rebel heroes., "title": Phineas and Ferb: Star Wars, "video": 0, "release_date": 2014-07-26, "original_language": en, "popularity": 1.161302, "poster_path": /c1C8V9OmzRAyTukldTbImyGayu0.jpg, "original_title": Phineas and Ferb: Star Wars, "id": 392216, "vote_count": 0, "adult": 0, "backdrop_path": /wyniUWq8Aml6tfwTwqxV0caDcCj.jpg, "vote_average": 0], ["genre_ids": <__NSCFArray 0x7fd6fcab8da0>(
+16,
+35,
+878
+)
+, "overview": Fans of Adult Swim's "Robot Chicken" and the Star Wars movie franchise won't want to miss this collection of 30 sketches. This hilarious compilation features an array of skits -- such as "Darth Vader's Collect Call" and "Inside the AT-AT" -- as well as the incredible voice talents of Hulk Hogan, Malcolm McDowell, Conan O'Brien and even the original Luke Skywalker himself, Mark Hamill., "title": Robot Chicken: Star Wars, "video": 0, "release_date": 2007-07-17, "original_language": en, "popularity": 1.165522, "poster_path": /3vcBL7zNVMhLdFSEh3xiquhdp1x.jpg, "original_title": Robot Chicken: Star Wars, "id": 42979, "vote_count": 25, "adult": 0, "backdrop_path": /gZxY7VDOI48gjhnDJK1E6n9uHWk.jpg, "vote_average": 5.98], ["genre_ids": <__NSCFArray 0x7fd6fcab9120>(
+878,
+28,
+16
+)
+, "overview": Paul “OtaKing” Johnson drops a real treat in the form of this “Star Wars: TIE Fighter” animated short. Complete with appropriately radical electric guitar solos and impressive attention to detail, “TIE Fighter” casts the forces of the Galactic Empire not in the role of disposable cannon fodder seen in the Star Wars films, but as near-suicidally reckless angels of death.  Johnson animated this 7-minute short over the course of “four years’ worth of weekends,” and his love and attention-to-detail shows., "title": Star Wars: TIE Fighter, "video": 0, "release_date": 2015-03-24, "original_language": en, "popularity": 1.145025, "poster_path": /jwUexLOEBMFMbBoKzK4AT7hQYDw.jpg, "original_title": Star Wars: TIE Fighter, "id": 332479, "vote_count": 26, "adult": 0, "backdrop_path": /eNSyTprwxXrXs5amshnz2R2GKod.jpg, "vote_average": 7.67], ["genre_ids": <__NSCFArray 0x7fd6fcab94a0>(
+878,
+14
+)
+, "overview": Seers once shaped the path of the Jedi Order. But their visions grew unreliable and the Jedi came to distrust those with the ability. Seers hid their visions or left the Order forever  In the wake of the temple's destruction, a power struggle has emerged between Darth Vader, the dark Lord of the Sith, and Zhanna, the Emperor's Hand. Each seeks to eliminate the last of the Jedi and gain The Emperor's favor.  Caught between them is one woman who cannot deny the truth of her visions as all race to possess an ancient 'Jedi secret…, "title": Star Wars: Revelations, "video": 0, "release_date": 2005-04-16, "original_language": en, "popularity": 1.142029, "poster_path": /7ocWi5hcPOzqyseLjOpeZR3TIfC.jpg, "original_title": Star Wars: Revelations, "id": 80829, "vote_count": 8, "adult": 0, "backdrop_path": /cmImr7dgEKq1li9ux9hfdaaif5J.jpg, "vote_average": 3.44], ["genre_ids": <__NSCFArray 0x7fd6fcab9810>(
+878,
+16,
+28,
+10751,
+35
+)
+, "overview": A new Imperial threat has been detected and the good guys have to act fast. But Jedi-in-training Luke discovers that instant fame as a “Death-Star-Blower-Upper” can be a double-edged lightsaber, as his secret mission to Naboo is thwarted by those most unstoppable of foes -- crazed fans! (It’s hard being the galaxy’s New Hope.) Meanwhile, Darth Vader sees his day go from bad to worse when his relationship with the Emperor is imperiled by the unexpected arrival of Darth Maul. Luke and Vader’s quests to prove themselves lead them on a collision course with each other (literally) and their destiny., "title": Lego Star Wars: The Empire Strikes Out, "video": 0, "release_date": 2012-09-24, "original_language": en, "popularity": 1.48949, "poster_path": /vHGgKAkwydQjpS4TqktCTwGtKpy.jpg, "original_title": Lego Star Wars: The Empire Strikes Out, "id": 136406, "vote_count": 8, "adult": 0, "backdrop_path": /9k36XxWzys6yAgjG8sjoRhPU0HT.jpg, "vote_average": 5.63], ["genre_ids": <__NSArray0 0x7fd6fad041f0>(
+
+)
+, "overview": Star Wars: A New Hope recreated shot-for-shot using only footage from media made before 1977, "title": Star Wars: The Premake, "video": 0, "release_date": 2015-12-18, "original_language": en, "popularity": 1.011757, "poster_path": <null>, "original_title": Star Wars: The Premake, "id": 373840, "vote_count": 0, "adult": 0, "backdrop_path": <null>, "vote_average": 0], ["genre_ids": <__NSCFArray 0x7fd6fcab9c20>(
+878,
+28,
+12
+)
+, "overview": Upcoming Star Wars Spin-off directed by Phil Lord and Christopher Miller. How young Han Solo became the smuggler, thief, and scoundrel whom Luke Skywalker and Obi-Wan Kenobi first encountered in the cantina at Mos Eisley., "title": Untitled Han Solo Star Wars Anthology Film, "video": 0, "release_date": 2018-05-24, "original_language": en, "popularity": 1.004504, "poster_path": <null>, "original_title": Untitled Han Solo Star Wars Anthology Film, "id": 348350, "vote_count": 2, "adult": 0, "backdrop_path": <null>, "vote_average": 10], ["genre_ids": <__NSCFArray 0x7fd6fcab9fa0>(
+14,
+12,
+878,
+28
+)
+, "overview": A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy., "title": Rogue One: A Star Wars Story, "video": 0, "release_date": 2016-12-14, "original_language": en, "popularity": 1.674501, "poster_path": /hEEhpHLKLBI8w74jdj9kIpmsCkv.jpg, "original_title": Rogue One: A Star Wars Story, "id": 330459, "vote_count": 10, "adult": 0, "backdrop_path": /s1gwavi2lQbxHKx57JdQONF6QX5.jpg, "vote_average": 6.4], ["genre_ids": <__NSCFArray 0x7fd6fcaba520>(
+99
+)
+, "overview": Filmmaker Jamie Benning has finally finished his trilogy of documentary-commentaries. This final chapter concentrates on the first Star Wars film. Like his two previous documentaries, Building Empire (2006) and Returning to Jedi (2007), Star Wars Begins is an unofficial look at the creation of the classic movie and features deleted scenes, alternate takes and different angles, bloopers, original on set audio recordings and a huge amount of commentary from cast and crew, culled from every corner of the galaxy., "title": Star Wars Begins, "video": 0, "release_date": 2011-02-02, "original_language": en, "popularity": 1.001523, "poster_path": /qG6Ckwz1JywBOvyWtyPaKjYw1GZ.jpg, "original_title": Star Wars Begins, "id": 363132, "vote_count": 1, "adult": 0, "backdrop_path": /xa9GoKzrUgxeHmWQIddsK6xAQgj.jpg, "vote_average": 1]]
